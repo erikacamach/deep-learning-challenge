@@ -70,6 +70,24 @@ Design a neural network model, and be sure to adjust for modifications that will
 
 Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity_Optimization.h5.
 
+## Result 
+** The target variable for the model is the "IS_SUCCESSFUL" column.
+
+** The features used in the model are 'APPLICATION_TYPE', 'INCOME_AMT', 'CLASSIFICATION', 'AFFILIATION', 'ORGANIZATION', 'USE_CASE', and 'SPECIAL_CONSIDERATIONS'.
+
+** The 'SPECIAL_CONSIDERATIONS' variable was removed in the optimized model as it was deemed insignificant to predicting the target variable.
+Compiling, Training, and Evaluating the Model:
+
+For the optimized model, 74 neurons were utilized per hidden layer, chosen because 74 is 2 times the number of input dimensions (37). Three layers were employed, all featuring the hyperbolic tangent (tanh) activation function. Tanh was selected for its ability to incorporate negative values more effectively. Despite these efforts, the target model performance was not achieved. Several strategies were attempted, including:
+Removing columns individually: 'USE_CASE', 'ORGANIZATION', 'AFFILIATION', 'STATUS', 'INCOME_AMT', and 'ASK_AMT'.
+Dropping 'ORGANIZATION' and 'AFFILIATION' simultaneously.
+Dropping 'INCOME_AMT' and 'ASK_AMT' simultaneously.
+However, no significant improvement was observed when dropping any of these columns. Ultimately, only the 'SPECIAL_CONSIDERATIONS' column was dropped, as it appeared to be the least relevant for predicting the success of a venture.
+
+Experimentation was also conducted with the number of neurons, testing an increase to 99 neurons per layer, but this did not yield substantial improvements.
+
+Various combinations of activation functions were explored, such as (relu, tanh, tanh), (tanh, tanh, relu), and (relu, relu, tanh). The final configuration settled on using tanh activation for all three layers. Despite these attempts, the desired model performance remained elusive.
+
 ## Summary
 
 The ultimately optimized neural network model, fine-tuned through the Keras Tuner method, exhibited remarkable performance with an 80% accuracy and a minimal loss of 0.45. Utilizing a sigmoid activation function, the model boasted a sophisticated architecture, including an input layer of 76 nodes and five hidden layers with 16, 21, 26, 11, and 21 neurons, respectively, culminating in 50 training epochs. Its superiority over the non-optimized model highlighted the efficacy of automated tuning. The decision to retain the 'Name' column emerged as a pivotal factor, playing a crucial role in surpassing performance targets. This outcome underscores the significance of thoughtful dataset structuring prior to preprocessing, showcasing the profound impact of data organization on final model effectiveness.
